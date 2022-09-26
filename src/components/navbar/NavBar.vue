@@ -17,7 +17,11 @@
         v-if="isMenuIcon" 
         class="d-flex"        
       >
-        <v-btn v-for="(menu, i) in menus" :key="i" variant="plain">
+        <v-btn 
+          v-for="(menu, i) in menus" :key="i" 
+          variant="plain"
+          @click="scroll(menu.text)"
+        >
           <template v-slot:prepend>
             <v-icon :icon="menu.icon" />
           </template>    
@@ -40,14 +44,14 @@
       v-if="expandMenu"
       class="navbar__menu"
       flat  
-      position="absolute"
+      position="fixed"
       width="100%" 
     >
       <v-list class="navbar__menu__items">
         <v-list-item                
           v-for="(menu, i) in menus" :key="i"
           class="navbar__menu__item"
-          @click="null"
+          @click="scroll(menu.text)"
         >
           <template v-slot:prepend>
             <v-icon :icon="menu.icon" />
@@ -60,33 +64,43 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref, watch } from 'vue';
-import { useDisplay } from 'vuetify/lib/framework.mjs';
+  import {  ref, watch, onMounted } from 'vue';
+  import { useDisplay } from 'vuetify/lib/framework.mjs';
 
-const { mobile } = useDisplay()
+  const { mobile } = useDisplay()
 
-const isMenuIcon = ref(false)
-const expandMenu = ref(false)
-const menus = [
-  {
-    'icon': 'mdi:mdi-account',
-    'text': 'About me',    
-  },
-  {
-    'icon': 'fa-solid fa-toolbox',        
-    'text': 'Skills',    
-  },
-  {
-    'icon': 'fa-solid fa-window-maximize',
-    'text': 'Projects',    
-  } 
-]
+  const isMenuIcon = ref(false)
+  const expandMenu = ref(false)
+  const menus = [
+    {
+      'icon': 'mdi:mdi-account',
+      'text': 'About me',    
+    },
+    {
+      'icon': 'fa-solid fa-toolbox',        
+      'text': 'Skills',    
+    },
+    {
+      'icon': 'fa-solid fa-window-maximize',
+      'text': 'Projects',    
+    } 
+  ]
 
-watch(mobile, (_, newVal) => {
-  isMenuIcon.value = newVal
-  if(newVal) expandMenu.value = false
-})
+  watch(mobile, (_, newVal) => {
+    console.log(newVal)    
+    isMenuIcon.value = newVal
+    if(newVal) expandMenu.value = false
+  })
 
+  function scroll(content) {    
+    document.getElementById(content)?.scrollIntoView({behavior: 'smooth'})
+  }
+
+  onMounted(() => {    
+    isMenuIcon.value = !mobile.value
+    console.log(isMenuIcon.value)
+  })
+  
 </script>
 
 <style scoped>
