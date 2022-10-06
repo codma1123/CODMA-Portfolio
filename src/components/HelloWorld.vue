@@ -17,16 +17,43 @@
     id="About me"
     width="100%" color="primary-lighten"    
   >    
-    <v-container class="intro__about_me">
-      <div class="intro__about_me-content content1"></div>
-      <div class="intro__about_me-content content2"></div>
-      <div class="intro__about_me-content content3"></div>
-    </v-container>
+    <transition v-on:enter="enter">
+      <div v-if="show" ref="aboutMeWrapper">
+        <section>
+          <trigger-observer @triggerFadeIn="fadeIn" />
+          <v-container class="intro__about_me">            
+            <div class="intro__about_me-content content1"></div>
+            <div class="intro__about_me-content content2"></div>
+            <div class="intro__about_me-content content3"></div>
+          </v-container>
+        </section>
+      </div>
+    </transition>
+  </v-sheet>
+
+  <v-sheet height="1000">
 
   </v-sheet>
 </template>
 
 <script setup>
+import { onMounted, ref } from 'vue';
+import TriggerObserver from './TriggerObserver.vue';
+
+const show = ref(false)
+const aboutMeWrapper = ref(null)
+
+function enter(el) {
+  console.log('zzz')
+  el.style.opacity = 0;
+} 
+
+function fadeIn() {
+  aboutMeWrapper.value.style = "transition: opacity 1s"
+}
+
+onMounted(() => show.value = true)
+
 
 </script>
 
