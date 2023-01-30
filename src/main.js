@@ -15,7 +15,7 @@ app.directive('underline', el => {
 })
 
 app.directive('font-size', (el, binding) => {
-  el.style.fontSize = binding + 'px'
+  el.style.fontSize = binding.value + 'px'
 })
 
 app.use(vuetify)

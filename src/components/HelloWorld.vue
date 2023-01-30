@@ -234,12 +234,12 @@
         </div>
 
         <div class="d-flex flex-wrap justify-center mt-10 text-left">
-          <v-card class="mr-3" rounded="xl">
-            <v-card-title class="project-patented mt-5 text-center"> 개발 후기 </v-card-title>
-            <v-card-text class="project-description">
-              작성중..
-            </v-card-text>
-          </v-card>          
+          <div class="mr-3" rounded="xl">
+            <v-card-title class="project-patented mt-5 text-center"> 
+              개발 후기
+              <v-icon icon="mdi:mdi-cursor-default-click-outline" @click.stop="dondaDialog = true"/>
+            </v-card-title>
+          </div>          
         </div>
 
       </v-container>
@@ -311,6 +311,23 @@
       <v-card-text>
         현재 작성중인 포트폴리오입니다. 아직 담지못한 내용이 많아요!
       </v-card-text>
+    </v-card>
+  </v-dialog>
+
+  <v-dialog 
+    v-model="dondaDialog" 
+    transition="dialog-bottom-transition" 
+    fullscreen
+    :scrim="false"
+  >
+    <v-card>
+      <v-card-title v-font-size="50">
+        DONDA~
+      </v-card-title>
+      
+      <v-btn @click="dondaDialog = false">
+        닫기
+      </v-btn>
     </v-card>
   </v-dialog>
 </template>
@@ -407,6 +424,7 @@
   ]
 
   const enterDialog = ref(true)
+  const dondaDialog = ref(false)
 
   const copyComplete = ref(false)
   const show = ref(false)
