@@ -159,50 +159,48 @@
       </v-carousel>
 
       <v-container class="project-content-container">
+
+        <!-- 개요 -->
         <v-card-title class="mt-10 project-patented">
           <v-icon icon="mdi:mdi-file-document-edit-outline"/>
           프로젝트 개요
-        </v-card-title>
-  
+        </v-card-title>  
         <v-card-text class="project-description">
           기업의 주가 데이터를 수집, 가공하여 다양한 기업에 관한 주가 정보를 제공하고,
           <span v-underline>사용자에게 주가가 저평가된 종목을 추천하여 보여주는 웹 서비스 입니다. </span>        
         </v-card-text>
   
-        <div class="d-flex flex-wrap justify-center text-center mt-5">
-          <div>
-            <v-card-title class="project-patented">
-              개발 인원
-            </v-card-title>
-            <v-card-text class="project-description">
-              Front-End(1인), Back-End(2인)
-            </v-card-text>
-          </div>
 
-          <div>
-            <v-card-title class="project-patented">
-              개발 환경
-            </v-card-title>
-            <v-card-text class="d-flex justify-space-around mt-3">
-              <v-icon icon="mdi:mdi-docker" />
-              <v-icon icon="mdi:mdi-git" />
-              <v-icon icon="mdi:mdi-github" />
-            </v-card-text>
-          </div>
+        <!-- 개발 인원 -->
+        <v-card-title class="project-patented">
+          개발 인원
+        </v-card-title>
+        <v-card-text class="project-description">
+          Front-End(1인), Back-End(2인)
+        </v-card-text>
 
-          <div class="flex-grow-1">
-            <v-card-title class="project-patented">
-              주요 사용 기술 스택
-            </v-card-title>
-            <v-card-text class="project-description d-flex justify-center flex-wrap mt-3">
-              <v-chip v-for="dondaStack in dondaStacks" :key="dondaStack.skill" :color="dondaStack.color" class="ml-1" label>
-                {{ dondaStack.skill }}
-              </v-chip>              
-            </v-card-text>
-          </div>
+        <!-- 개발환경, 스택 -->
+        <v-card-title class="project-patented">
+          개발 환경
+        </v-card-title>
+        <v-card-text class="project-description">
+          <v-icon 
+            v-for="developmentEnvironmentIcon in developmentEnvironmentIcons" 
+            :key="developmentEnvironmentIcon.id"
+            :icon="developmentEnvironmentIcon.icon"
+            class="mr-2"
+            size="x-large"
+          />          
+        </v-card-text>
 
-          
-        </div>
+        <v-card-title class="project-patented">
+          주요 사용 기술 스택
+        </v-card-title>
+        <v-card-text class="project-description d-flex justify-center flex-wrap mt-3">
+          <v-chip v-for="dondaStack in dondaStacks" :key="dondaStack.skill" :color="dondaStack.color" class="ml-1" label>
+            {{ dondaStack.skill }}
+          </v-chip>              
+        </v-card-text>
   
         <div class="d-flex flex-wrap justify-center mt-10 text-left">
           <v-card class="mr-3" rounded="xl">
@@ -367,6 +365,21 @@
       skill: 'Figma',
       color: 'red-lighten-2'
     },
+  ]
+
+  const developmentEnvironmentIcons = [
+    {
+      id: 'git',
+      icon: 'mdi:mdi-git'
+    },
+    {
+      id: 'github',
+      icon: 'mdi:mdi-github'
+    },
+    {
+      id: 'docker',
+      icon: 'mdi:mdi-docker'
+    }
   ]
 
   const copyComplete = ref(false)
@@ -550,6 +563,7 @@
 }
 
 .project-patented {
+  margin-top: 20px;
   padding-top: 20px;
   font-size: 30px;
   opacity: .8;
@@ -559,8 +573,7 @@
   max-width: 1100px;
 }
 
-.DONDA-img {
-}
+
 
 
 
