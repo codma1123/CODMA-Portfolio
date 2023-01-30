@@ -21,7 +21,7 @@
   >
 
     <v-avatar size="250">
-      <v-img src="/public/codmaProfile.png" />
+      <v-img src="../../public/codmaProfile.png" />
     </v-avatar>
     
     <div class="profile-description">
@@ -29,10 +29,18 @@
     </div>
 
     <div class="profile-description">
-      <v-btn variant="text" icon="mdi:mdi-github" size="x-large" />
-      <v-btn variant="text" icon="fa-regular fa-envelope" size="x-large" />   
-    </div>
-    
+      <v-btn 
+        variant="text" 
+        icon="mdi:mdi-github"
+        size="x-large" 
+        @click="direct"
+      />
+      <v-btn 
+        variant="text"
+        icon="fa-regular fa-envelope"
+        size="x-large"          
+      />   
+    </div>  
   </v-sheet>
 
   <v-sheet     
@@ -51,7 +59,7 @@
           <trigger-observer @triggerFadeIn="fadeIn" />
           <v-container class="intro__about_me">            
             <v-avatar size="150">
-              <v-img src="/public/codmaProfile.png" />
+              <v-img src="../../public/codmaProfile.png" />
             </v-avatar>
 
             <div class="d-flex align-center flex-wrap justify-center aboutMe-chips">
@@ -118,8 +126,11 @@
     class="text-center pb-15"
   >
     <v-card-title class="content-title flex-wrap">
-      SKILLS
+      SKILLS      
     </v-card-title>
+    <v-card-subtitle v-font-size="20">
+      이미지를 클릭하여 상세한 내용을 살펴보세요.
+    </v-card-subtitle>
 
     <div class="skills-container">
       <v-img 
@@ -226,14 +237,7 @@
           <v-card class="mr-3" rounded="xl">
             <v-card-title class="project-patented mt-5 text-center"> 개발 후기 </v-card-title>
             <v-card-text class="project-description">
-              <li>KOSPI, NASDAQ등 주요 시장의 현황을 보여줍니다. </li>
-              <li>검색을 통해 원하는 기업에 대한 정보를 불러올 수 있습니다. </li>
-              <li v-underline>주가가 상대적으로 저평가된 종목을 추천하여 보여줍니다. </li>
-              <li v-underline>기업의 주가를 차트로 시각화하여 보여줍니다.</li>
-              <li>주가가 상대적으로 저평가된 종목을 추천하여 보여줍니다. </li>
-              <li>종목 검색을 통해 원하는 기업에 대한 정보를 불러올 수 있습니다. </li>
-              <li>종목 관련 뉴스 소식을 보여줍니다.</li>
-              <li></li>
+              작성중..
             </v-card-text>
           </v-card>          
         </div>
@@ -301,15 +305,19 @@
     
   </v-dialog>
 
-  <v-sheet height="1000">
-
-  </v-sheet>
+  <v-dialog v-model="enterDialog" max-width="500">
+    <v-card width="500" height="300" rounded="xl" class="text-center d-flex align-center">          
+      <v-icon icon="mdi:mdi-sign-caution" size="200"/> 
+      <v-card-text>
+        현재 작성중인 포트폴리오입니다. 아직 담지못한 내용이 많아요!
+      </v-card-text>
+    </v-card>
+  </v-dialog>
 </template>
 
 <script setup>
   import { onMounted, ref } from 'vue';
   import TriggerObserver from './TriggerObserver.vue';
-  import SkillDialog from '../components/SkillDialog'
 
   const email = 'codma1123@naver.com'
 
@@ -398,19 +406,22 @@
     }
   ]
 
+  const enterDialog = ref(true)
+
   const copyComplete = ref(false)
   const show = ref(false)
   const aboutMeWrapper = ref(null)
   const dialog = ref(false)
-  const currentId = ref('')
   const currentSkill = ref(null)
+  const direct = () => window.open('https://github.com/codma1123', "_blank")
+  
 
-  const enter = el => el.style.opacity = 0
-  const fadeIn = () => aboutMeWrapper.value.style = "transition: opacity 3s"
-  const scrollMouseOver = e => {
-    e.target.style.transform = "translate(0, 30vh)"
-    e.target.style.opacity = 0
-  }
+  // const enter = el => el.style.opacity = 0
+  // const fadeIn = () => aboutMeWrapper.value.style = "transition: opacity 3s"
+  // const scrollMouseOver = e => {
+  //   e.target.style.transform = "translate(0, 30vh)"
+  //   e.target.style.opacity = 0
+  // }
 
   const copyMail = () => navigator.clipboard.writeText(email).then(() => copyComplete.value = true)
 

@@ -1,6 +1,7 @@
 {
   "name": "codma-portfolio",
   "version": "0.0.0",
+  "homepage": "http://codmaPortfolio.com/blog",
   "private": true,
   "scripts": {
     "serve": "vite preview",

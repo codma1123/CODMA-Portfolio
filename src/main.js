@@ -13,6 +13,12 @@ app.directive('underline', el => {
   el.style.textDecorationColor = 'yellow'
   el.style.textDecorationThickness = '3px'
 })
+
+app.directive('font-size', (el, binding) => {
+  el.style.fontSize = binding + 'px'
+})
+
 app.use(vuetify)
+
 app.mount('#app')
 
