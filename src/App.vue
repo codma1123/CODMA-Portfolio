@@ -24,3 +24,13 @@ export default {
   }),
 }
 </script>
+
+<style>
+@import url('https://fonts.googleapis.com/css?family=Jua:400');
+
+body {
+  font-family: 'Jua', sans-serif;
+}
+</style>
+
+

@@ -4,13 +4,14 @@
     density="compact"
     height="100"    
     max-height="auto"
-    flat
+    flat    
+    ref="appBar"
   >
     <!-- <template v-slot:prepend>
       <v-app-bar-nav-icon></v-app-bar-nav-icon>
     </template> -->
 
-    <v-app-bar-title class="text-h4 font-weight-bold ml-10">CODMA's PortFolio</v-app-bar-title>
+    <!-- <v-app-bar-title class="text-h4 font-weight-bold ml-10">CODMA's PortFolio</v-app-bar-title> -->
     
     <template v-slot:append>
       <div 
@@ -64,11 +65,20 @@
 </template>
 
 <script setup>
-  import {  ref, watch, onMounted } from 'vue';
+  import {  ref, watch, onMounted, onUnmounted } from 'vue';
   import { useDisplay } from 'vuetify/lib/framework.mjs';
 
   const { mobile } = useDisplay()
+  const scrollHeight = ref(0)
+  
 
+  watch(scrollHeight, v => {
+    if(v) appBar.value.$el.style.opacity = 1
+    else appBar.value.$el.style.opacity = 1
+    
+  })
+
+  const appBar = ref(null)
   const isMenuIcon = ref(false)
   const expandMenu = ref(false)
   const menus = [
@@ -87,25 +97,28 @@
   ]
 
   watch(mobile, (_, newVal) => {
-    console.log(newVal)    
     isMenuIcon.value = newVal
     if(newVal) expandMenu.value = false
   })
+  
+  const scroll = content => document.getElementById(content)?.scrollIntoView({behavior: 'smooth'})
+  
+  const updateScroll = () => scrollHeight.value = window.scrollY || document.documentElement.scrollTop
+  
 
-  function scroll(content) {    
-    document.getElementById(content)?.scrollIntoView({behavior: 'smooth'})
-  }
-
-  onMounted(() => {    
+  onMounted(() => {
     isMenuIcon.value = !mobile.value
-    console.log(isMenuIcon.value)
+    window.addEventListener('scroll', updateScroll)
   })
+
+  onUnmounted(() => window.removeEventListener('scroll', updateScroll))
   
 </script>
 
 <style scoped>
+
 .navbar__menu {
-  z-index: 1; 
+  z-index: 3; 
   margin-top: 75px;     
 }
 
