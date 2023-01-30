@@ -1,47 +1,100 @@
 <template>
-    <v-sheet 
-      class="px-5 pt-15 d-flex align-center justify-center flex-column profile-container"
-      height="90vh"    
-    >
-
-    <v-avatar size="250">
-      <v-img src="../../public/codmaProfile.png" />
-    </v-avatar>
+  <v-sheet     
+    width="100%"
+    color="#181818"
+    id="About me"
+    class="text-center"
+  >    
+    <v-card-title class="content-title">
+      ABOUT ME
+    </v-card-title>
     
-    <div class="profile-description">
-      주니어 프론트엔드 개발자 이준하
-    </div>
+    <transition v-on:enter="enter">
+      <div v-if="show" ref="aboutMeWrapper">
+        <section>
+          <trigger-observer @triggerFadeIn="fadeIn" />
+          <v-container class="intro__about_me">            
+            <v-avatar size="150">
+              <v-img src="../../public/codmaProfile.png" />
+            </v-avatar>
 
-    <div class="profile-description">
-      <v-btn 
-        variant="text" 
-        icon="mdi:mdi-github"
-        size="x-large" 
-        @click="popUpPage"
-      />
-      <v-btn 
-        variant="text"
-        icon="fa-regular fa-envelope"
-        size="x-large"          
-      />   
-    </div>  
+            <div class="d-flex align-center flex-wrap justify-center aboutMe-chips">
+
+              <!-- 이름 -->
+              <div class="aboutMe-chip" label>
+                <div class="abomtMe-chip-label">이름</div>
+                <div class="abomtMe-chip-description">이준하 | CODMA</div>
+              </div>
+
+              <!-- 생년월일 -->
+              <div class="aboutMe-chip" label>
+                <div class="abomtMe-chip-label">생년월일</div>
+                <div class="abomtMe-chip-description">1996.11.29</div>
+              </div>
+
+              <!-- 메일 -->
+              <div class="aboutMe-chip" label>
+                <div class="abomtMe-chip-label">메일</div>
+                <div class="abomtMe-chip-description email" @click="copyMail"> 
+                  codma1123@naver.com                  
+                </div>
+              </div>
+
+              <!-- 연락처 -->
+              <div class="aboutMe-chip" label>
+                <div class="abomtMe-chip-label">연락처</div>
+                <div class="abomtMe-chip-description">010-9922-0335</div>
+              </div>
+
+              <!-- 거주지 -->
+              <div class="aboutMe-chip" label>
+                <div class="abomtMe-chip-label">거주지</div>
+                <div class="abomtMe-chip-description">안산시 상록구</div>
+              </div>
+
+              <!-- 학적 -->
+              <div class="aboutMe-chip" label>
+                <div class="abomtMe-chip-label">학적</div>
+                <div class="abomtMe-chip-description">한경대학교 컴퓨터공학과</div>
+              </div>
+
+              
+            </div>
+            <!-- <div class="intro__about_me-content content1">
+              <v-icon icon="mdi:mdi-account" size="200" />              
+              <v-list class="intro__about_me_myName">
+                <v-list-item>
+                </v-list-item>
+                <v-list-item>
+                </v-list-item>
+              </v-list>
+            </div>
+            <div class="intro__about_me-content content2"></div>
+            <div class="intro__about_me-content content3"></div> -->
+          </v-container>
+        </section>
+      </div>
+    </transition>
   </v-sheet>
 </template>
 
 <script setup>
+  import { onMounted } from 'vue'
+  import TriggerObserver from '../TriggerObserver.vue';
 
-  const GITHUB_ADDRESS = 'https://github.com/codma1123'
-  const TARGET = "_blank"
+  const EMAIL = 'codma1123@naver.com'
 
-  const popUpPage = () => window.open(GITHUB_ADDRESS, TARGET)
+  const show = ref(false)
+  const copyComplete = ref(false)
+
+  const copyMail = () => navigator.clipboard.writeText(EMAIL).then(() => copyComplete.value = true)      
+  
+
+  onMounted(() => show.value = true)
+
 
 </script>
 
 <style lang="scss" scoped>
-.profile-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
+
 </style>

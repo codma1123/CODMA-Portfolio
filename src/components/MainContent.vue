@@ -15,10 +15,10 @@
     </v-container>
   </v-sheet> -->
 
-  <AboueMeSection />
+  <EnterSection />
+
 
   <v-sheet     
-    width="100%"
     color="#181818"
     id="About me"
     class="text-center"
@@ -137,15 +137,16 @@
       <v-img src="../../public/projects/title.png" class="project-title"/>
 
       <v-carousel 
-        hide-delimiters 
         class="project-carousel"
-        show-arrows="hover"
+        :show-arrows="false"
+        hide-delimiter-background
+        delimiter-icon="mdi:mdi-square"
       >
-        <v-carousel-item src="../../public/projects/DONDA.png" />
-        <v-carousel-item src="../../public/projects/search.png" />
-        <v-carousel-item src="../../public/projects/eval.png" />
-        <v-carousel-item src="../../public/projects/indicator.png" />
-        <v-carousel-item src="../../public/projects/news.png" />
+        <v-carousel-item class="carousel-item" src="../../public/projects/DONDA.png" />
+        <v-carousel-item class="carousel-item" src="../../public/projects/search.png" />
+        <v-carousel-item class="carousel-item" src="../../public/projects/eval.png" />
+        <v-carousel-item class="carousel-item" src="../../public/projects/indicator.png" />
+        <v-carousel-item class="carousel-item" src="../../public/projects/news.png" />
       </v-carousel>
 
       <v-container class="project-content-container">
@@ -312,6 +313,7 @@
 <script setup>
   import { onMounted, ref } from 'vue';
   import AboueMeSection from '../components/section/AboueMeSection.vue'
+  import EnterSection from '../components/section/EnterSection.vue'
   import TriggerObserver from './TriggerObserver.vue';
 
   const email = 'codma1123@naver.com'
@@ -433,7 +435,7 @@
 
 </script>
 
-<style scoped>
+<style>
 @import url('https://fonts.googleapis.com/css?family=Jua:400');
 
 .profile-container {
@@ -482,16 +484,6 @@
   transform: scale(1.15);
 }
 
-.profile-description {
-  display: flex;
-  gap: .75rem;
-  text-align: center;
-  border-radius: 1rem;
-  background-color: #212121;
-  padding: 5px;
-  z-index: 1;
-  font-size: 25px;
-}
 
 .profile-links {
 
@@ -573,12 +565,14 @@
   font-size: 30px;
   height: 200px;
   padding: 20px;
+  margin-bottom: 20px;
 }
 
 
 .project-carousel {
   margin: auto;
   height: 500px !important;
+  overflow: visible;
   width: 75%;
 }
 
@@ -642,8 +636,7 @@
 
   .project-donda {
     background-image: none;
-    background-size: 300px 300px;
-    
+        
   }
 
 }
@@ -677,5 +670,9 @@
 
 .dialog-content {
   font-size: 20px;
+}
+
+.carousel-item {
+  bottom: 50px;
 }
 </style>
