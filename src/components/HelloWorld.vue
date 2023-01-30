@@ -142,7 +142,12 @@
 
 
     <!-- 프로젝트 DONDA-Desktop -->
-    <v-card class="ml-10 mr-10 mt-10" elevation="0" rounded="xl" color="rgb(38, 38, 38)">
+    <v-card 
+      class="ml-10 mr-10 mt-10 project-donda"
+      elevation="0" 
+      rounded="xl"
+      color="rgb(38, 38, 38)"      
+    >
 
       <v-img src="../../public/projects/title.png" class="project-title"/>
 
@@ -197,13 +202,13 @@
           주요 사용 기술 스택
         </v-card-title>
         <v-card-text class="project-description d-flex justify-center flex-wrap mt-3">
-          <v-chip v-for="dondaStack in dondaStacks" :key="dondaStack.skill" :color="dondaStack.color" class="ml-1" label>
+          <v-chip v-for="dondaStack in dondaStacks" :key="dondaStack.skill" :color="dondaStack.color" class="ml-1" label size="x-large">
             {{ dondaStack.skill }}
           </v-chip>              
         </v-card-text>
   
         <div class="d-flex flex-wrap justify-center mt-10 text-left">
-          <v-card class="mr-3" rounded="xl">
+          <div class="mr-3" rounded="xl">
             <v-card-title class="project-patented mt-5 text-center"> 주요 기능 </v-card-title>
             <v-card-text class="project-description">
               <li>KOSPI, NASDAQ등 주요 시장의 현황을 보여줍니다. </li>
@@ -212,14 +217,25 @@
               <li v-underline>기업의 주가를 차트로 시각화하여 보여줍니다.</li>
               <li>주가가 상대적으로 저평가된 종목을 추천하여 보여줍니다. </li>
               <li>종목 검색을 통해 원하는 기업에 대한 정보를 불러올 수 있습니다. </li>
+              <li>종목 관련 뉴스 소식을 보여줍니다.</li>
             </v-card-text>
-          </v-card>
-          <v-card class="ml-3" rounded="xl">
-            <v-card-title class="project-patented mt-5"> 주요 기능 </v-card-title>
+          </div>          
+        </div>
+
+        <div class="d-flex flex-wrap justify-center mt-10 text-left">
+          <v-card class="mr-3" rounded="xl">
+            <v-card-title class="project-patented mt-5 text-center"> 개발 후기 </v-card-title>
             <v-card-text class="project-description">
               <li>KOSPI, NASDAQ등 주요 시장의 현황을 보여줍니다. </li>
+              <li>검색을 통해 원하는 기업에 대한 정보를 불러올 수 있습니다. </li>
+              <li v-underline>주가가 상대적으로 저평가된 종목을 추천하여 보여줍니다. </li>
+              <li v-underline>기업의 주가를 차트로 시각화하여 보여줍니다.</li>
+              <li>주가가 상대적으로 저평가된 종목을 추천하여 보여줍니다. </li>
+              <li>종목 검색을 통해 원하는 기업에 대한 정보를 불러올 수 있습니다. </li>
+              <li>종목 관련 뉴스 소식을 보여줍니다.</li>
+              <li></li>
             </v-card-text>
-          </v-card>
+          </v-card>          
         </div>
 
       </v-container>
@@ -538,6 +554,13 @@
   background-color: rgb(50, 202, 134);
 }
 
+.project-donda {
+  background-image: url('../../public/projects/donda-bg.png');
+  background-repeat: no-repeat;
+  background-size: 650px 650px;
+  background-position: -10% 800px;
+}
+
 .project-title {
   margin-top: 20px;
   font-size: 30px;
@@ -566,7 +589,6 @@
   margin-top: 20px;
   padding-top: 20px;
   font-size: 30px;
-  opacity: .8;
 }
 
 .project-content-container {
@@ -600,6 +622,12 @@
   
   .projects {  
     padding: 10px;
+  }
+
+  .project-donda {
+    background-image: none;
+    background-size: 300px 300px;
+    
   }
 
 }
