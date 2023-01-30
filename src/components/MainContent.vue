@@ -15,33 +15,7 @@
     </v-container>
   </v-sheet> -->
 
-  <v-sheet 
-    class="px-5 pt-15 d-flex align-center justify-center flex-column profile-container"
-    height="90vh"    
-  >
-
-    <v-avatar size="250">
-      <v-img src="../../public/codmaProfile.png" />
-    </v-avatar>
-    
-    <div class="profile-description">
-      주니어 프론트엔드 개발자 이준하
-    </div>
-
-    <div class="profile-description">
-      <v-btn 
-        variant="text" 
-        icon="mdi:mdi-github"
-        size="x-large" 
-        @click="direct"
-      />
-      <v-btn 
-        variant="text"
-        icon="fa-regular fa-envelope"
-        size="x-large"          
-      />   
-    </div>  
-  </v-sheet>
+  <AboueMeSection />
 
   <v-sheet     
     width="100%"
@@ -337,6 +311,7 @@
 
 <script setup>
   import { onMounted, ref } from 'vue';
+  import AboueMeSection from '../components/section/AboueMeSection.vue'
   import TriggerObserver from './TriggerObserver.vue';
 
   const email = 'codma1123@naver.com'
