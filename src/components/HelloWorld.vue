@@ -235,9 +235,12 @@
 
         <div class="d-flex flex-wrap justify-center mt-10 text-left">
           <div class="mr-3" rounded="xl">
-            <v-card-title class="project-patented mt-5 text-center"> 
-              개발 후기
-              <v-icon icon="mdi:mdi-cursor-default-click-outline" @click.stop="dondaDialog = true"/>
+            <v-card-title class="project-patented mt-5 text-center" @click.stop="dondaDialog = true"> 
+              <span v-underline>개발 상세 및 후기</span>              
+              <v-icon
+                icon="mdi:mdi-cursor-default-click-outline" 
+                class="ml-3"
+              />
             </v-card-title>
           </div>          
         </div>
@@ -618,7 +621,16 @@
   margin-top: 20px;
   padding-top: 20px;
   font-size: 30px;
+  cursor: pointer;  
 }
+
+.project-patented.after-review:hover {
+  transition: .5s all ease-in-out;
+}
+.project-patented.after-review:hover {
+  transform: scale(1.2);
+}
+
 
 .project-content-container {
   max-width: 1100px;
