@@ -2,27 +2,15 @@
   <v-app>
     <NavBar />
     <v-main>
-      <HelloWorld/>
+      <MainContent />
     </v-main>
   </v-app>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+<script setup>
+import MainContent from './components/MainContent.vue'
 import NavBar from './components/navbar/NavBar.vue'
 
-export default {
-  name: 'App',
-
-  components: {
-    HelloWorld,
-    NavBar
-  },
-
-  data: () => ({
-    //
-  }),
-}
 </script>
 
 <style>
