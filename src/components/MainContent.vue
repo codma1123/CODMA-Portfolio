@@ -105,16 +105,94 @@
     <v-card-subtitle v-font-size="20">
       이미지를 클릭하여 상세한 내용을 살펴보세요.
     </v-card-subtitle>
+<!-- 
+    <v-container class="skill-container">
+      <div class="skill-label">
+        ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
+        ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
+      </div>
+      <v-card color="white" height="300">
+        ㅎㅇ
+      </v-card>
+    </v-container> -->
+    
+    <!-- <v-container class="mt-10 d-flex flex-wrap skills-container">
+      <v-card 
+        class="d-flex pt-3 pb-3 align-center"
+        color="white" 
+        rounded="xl"
+        width="500"
+        height="250"
+      >        
+        <v-img
+          class="img"
+          src="../../public/HTML5.svg"
+        />
+        <v-img
+          class="img"
+          src="../../public/CSS.svg"
+        />
+        <v-img
+          class="img"
+          src="../../public/HTML5.svg"
+        />
 
-    <div class="skills-container">
-      <v-img 
-        class="img"
+      </v-card>
+      
+    </v-container> -->
+
+
+    <v-container class="skills-container">      
+      <v-img        
         v-for="skillContent in skillContents" 
+        :class="['img', skillContent.id === currentSkill?.id ? 'active' : '']"        
         :id="skillContent.id" 
         :src="skillContent.src"
         @click.stop="openDialog(skillContent.id)"
-      />
-    </div>
+      />            
+    </v-container>
+
+    <v-container class="mt-5" v-if="!mobile && currentSkill">
+      <v-card 
+        class="skills-current"
+        color="white" rounded="xl" height="400"
+      >
+        <div>
+          <v-img :src="currentSkill.src" class="img"/>
+        </div>
+        <div class="description-container">
+          <div class="description" v-underline="'green'">
+            <Chip 
+              type="Vue.js" 
+              content="Vue 2" 
+              @click="openDialog"
+            />
+            버전을 
+            <Chip 
+              type="TypeScript" 
+              @click="openDialog"
+            />
+            로 개발한 경험이 있습니다.
+          </div>
+          <div class="description">
+            
+          </div>
+          <div class="description">
+            <!-- <Chip size="x-large" type="Vue.js" content="Vue 2"/> -->
+          </div>
+          
+        </div>
+        <v-card
+          elevation="0"
+          v-font-size="50" class="title"
+          rounded="xl"
+          color="rgb(65, 184, 131)"
+        >
+          {{ currentSkill.id }}
+        </v-card>
+      </v-card>
+    </v-container>
+    
   </v-sheet>
 
   <v-sheet
@@ -283,14 +361,14 @@
     
   </v-dialog>
 
-  <v-dialog v-model="enterDialog" max-width="500">
+  <!-- <v-dialog v-model="enterDialog" max-width="500">
     <v-card width="500" height="300" rounded="xl" class="text-center d-flex align-center">          
       <v-icon icon="mdi:mdi-sign-caution" size="200"/> 
       <v-card-text>
         현재 작성중인 포트폴리오입니다. 아직 담지못한 내용이 많아요!
       </v-card-text>
     </v-card>
-  </v-dialog>
+  </v-dialog> -->
 
   <v-dialog 
     v-model="dondaDialog" 
@@ -312,13 +390,15 @@
 
 <script setup>
   import { onMounted, ref } from 'vue';
+  import { useDisplay } from 'vuetify/lib/framework.mjs';
   import AboueMeSection from '../components/section/AboueMeSection.vue'
   import EnterSection from '../components/section/EnterSection.vue'
-  import TriggerObserver from './TriggerObserver.vue';
+  import TriggerObserver from './TriggerObserver.vue';  
+  import Chip from './SkillDialog'
 
   const email = 'codma1123@naver.com'
 
-  const skillContents = [
+  const skillContents = ref([
     {
       id: 'HTML',
       src: '../../public/HTML5.svg',
@@ -359,7 +439,7 @@
       src: '../../public/VUETIFY.svg',
       content: 'Vue.js에서 활용 가능한 CSS 프레임워크입니다.'
     },    
-  ]
+  ])
 
   const dondaStacks = [
     {
@@ -412,6 +492,7 @@
   const dialog = ref(false)
   const currentSkill = ref(null)
   const direct = () => window.open('https://github.com/codma1123', "_blank")
+  const { mobile } = useDisplay()
   
 
   // const enter = el => el.style.opacity = 0
@@ -424,36 +505,35 @@
   const copyMail = () => navigator.clipboard.writeText(email).then(() => copyComplete.value = true)
 
   const openDialog = id => {
-    currentSkill.value = skillContents.find(skillContent => skillContent.id === id)    
-    dialog.value = true
+    const targetSkill = skillContents.value.find(skillContent => skillContent.id === id)
+    currentSkill.value = targetSkill
+    if (mobile.value) {
+      dialog.value = true
+    }    
+  }
+
+  const getSkillImgClass = id => {
+    return id === currentSkill?.value.id ? 'active' : ''
+  }
+
+  const chipClickHandler = id => {
+    const targetSkill = skillContents.value.find(skillContent => skillContent.id === id)
+    currentSkill.value = targetSkill
   }
 
 
       
-  onMounted(() => show.value = true)
+  onMounted(() => {
+    show.value = true
+    currentSkill.value = skillContents.value.find(skill => skill.id === 'Vue.js')
+  })
 
 
 </script>
 
-<style>
+<style lang="scss">
 @import url('https://fonts.googleapis.com/css?family=Jua:400');
 
-.profile-container {
-  position: relative;
-  gap: 10px;
-}
-.profile-container::before {
-  content: "";
-  background-image: url('../../public/bg.png');
-  background-repeat: no-repeat;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  background-size: cover;
-  opacity: .5;
-}
 
 .profile-divider {
   width: 300px;;
@@ -461,27 +541,29 @@
   background: brown;
 }
 
-.skills-container {
-  margin-left: 100px;
-  margin-right: 100px;
-  padding: 30px;  
+.skills-container {    
   margin-top: 30px;
   display: flex;
-  gap: 20px;
+  gap: 30px;
   flex-wrap:wrap;
-  background-color: white;
   border-radius: 1rem;
 }
 
 .skills-container .img {
+  background-color: white;  
+  opacity: .5;
+  border-radius: 20px;
   display: block;
   height: 200px;
-  width: 21%;
+  width: 10%;
+  max-width: 100%;
   cursor: pointer;
   transition: all .5s;
 }
-.skills-container .img:hover {
+
+.skills-container .img.active {
   transform: scale(1.15);
+  opacity: 1;
 }
 
 
@@ -610,6 +692,11 @@
 
 
 @media screen and (max-width: 600px) {
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
   .intro__about_me {    
     padding-left: 2rem;
     padding-right: 2rem;
@@ -622,14 +709,9 @@
   }
 
   .skills-container .img {    
-    width: 44%;
+    width: 35%;
   }
-
-  .skills-container {
-    margin-left: 20px;
-    margin-right: 20px;
-  }
-  
+    
   .projects {  
     padding: 10px;
   }
@@ -674,5 +756,58 @@
 
 .carousel-item {
   bottom: 50px;
+}
+
+
+.skill-container {
+  position: relative;
+}
+
+
+.skill-label {
+  position: absolute;
+  left: 50%;
+  color: black;
+  z-index: 10;
+}
+
+.skills-current {
+  display: flex;
+  padding : 30px 30px 30px 0px;  
+  position: relative;
+  overflow: visible;
+  .img {
+    height: 500px;
+    width: 500px;
+  }
+
+  .title {
+    position: absolute;
+    top: -30px;
+    left: -60px;
+    
+    margin-left: 20px;
+    // border: 3px solid black;
+    // border-radius: 1rem;;
+    padding: 10px;
+  }
+
+  .description-container {
+    flex-grow: 1;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+  }
+
+  .description {
+    
+    border-radius: 1rem;
+    padding: .75rem;    
+    text-align: start;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
 }
 </style>

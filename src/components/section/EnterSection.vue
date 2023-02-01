@@ -1,17 +1,19 @@
 <template>
   <v-sheet 
-    class="profile-container px-5 pt-15"
+    class="profile-sheet px-5 pt-15"
     height="90vh"    
   >
 
-  <v-avatar size="250">
-    <v-img src="../../public/codmaProfile.png" />
-  </v-avatar>
+    <v-container class="profile-container">
+      <!-- <v-avatar size="250">
+        <v-img src="../../public/codmaProfile.png" />
+      </v-avatar>       -->
+      <div v-font-size="30">
+        
+      </div>
+    </v-container>
   
-  <div class="profile-description">
-    주니어 프론트엔드 개발자 이준하
-  </div>
-
+  
   <div class="profile-description">
     <v-btn 
       variant="text" 
@@ -38,7 +40,30 @@ const popUpPage = () => window.open(GITHUB_ADDRESS, TARGET)
 </script>
 
 <style lang="scss" scoped>
+.profile-sheet {
+  position: relative;
+  gap: 10px;
+}
+.profile-sheet::before {
+  content: "";
+  background-image: url('../../public/bg.png');
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-size: cover;
+  opacity: .5;
+}
+
 .profile-container {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+
+.profile-sheet {
   display: flex;
   align-items: center;
   justify-content: center;

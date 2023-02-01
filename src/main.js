@@ -7,10 +7,10 @@ import "@fontsource/poppins";
 loadFonts()
 
 const app = createApp(App)
-app.directive('underline', el => {
+app.directive('underline', (el, binding) => {
   el.style.textDecorationLine = 'underline'
   el.style.textDecorationStyle = 'wavy'
-  el.style.textDecorationColor = 'yellow'
+  el.style.textDecorationColor = binding.value || 'yellow'
   el.style.textDecorationThickness = '3px'
 })
 
