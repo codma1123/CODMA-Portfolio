@@ -161,7 +161,7 @@
           <v-img :src="currentSkill.src" class="img"/>
         </div>
         <div class="description-container">
-          <div class="description" v-underline="'green'">
+          <div class="description">
             <Chip 
               type="Vue.js" 
               content="Vue 2" 
