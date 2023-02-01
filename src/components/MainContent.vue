@@ -783,8 +783,9 @@
 
   .title {
     position: absolute;
-    top: -30px;
-    left: -60px;
+    top: 30px;
+    left: 0px;
+    border: 5px solid white;
     
     margin-left: 20px;
     // border: 3px solid black;
