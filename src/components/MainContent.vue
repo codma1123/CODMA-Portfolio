@@ -169,62 +169,16 @@
           <v-img :src="currentSkill.src" class="img"/>
         </div>
         <div class="description-container">
-          <div class="description">
-            <Chip 
-              type="Vue.js" 
-              content="Vue 2" 
-              @click="openDialog"
-            />
-            <Chip
-              type="Vue.js"
-              content="Vue 3"
-              @click="openDialog"
-            />            
-            을
-            <Chip 
-              type="TypeScript" 
-              @click="openDialog"
-            />
-            로 개발한 경험이 있습니다.
-          </div>
-          <div class="description">
-            <Chip
-              type="Vue.js"
-              content="Vue 2"
-              @click="openDialog"
-            />을
-            <Chip content="Class Component" @popUp="onPopUp"/>
-            스타일로 작성한 경험이 있습니다.
-            
-          </div>
-          <div class="description">
-            <Chip
-              type="Vue.js"
-              content="Vue 3"
-            />을
-            <Chip content="Composition API"/>
-            스타일로 작성한 경험이 있습니다.
-          </div>
-
-          <div class="description">            
-            <Chip type="Vuex" @click="openDialog"/>,
-            <Chip type="pinia" @click="openDialog"/>
-            와 같은 상태관리 라이브러리 사용에 능합니다.
-          </div>          
-
-          <div class="description">            
-            <Chip content="Custom Directive" />,
-            <Chip content="h() Render Function" />
-            <span>과 같이 재사용성을 위한</span>
-            <Chip type="Vue.js" />의 다양한 기능들을 사용합니다.
-          </div>
-
-          <div class="description">            
-            <Chip content="Custom Directive" />,
-            <Chip content="h() Render Function" />
-            <span>과 같이 재사용성을 위한</span>
-            <Chip type="Vue.js" />의 다양한 기능들을 사용합니다.
-          </div>
+          <VueSkills 
+            v-if="currentSkill.id === 'Vue.js'"
+            @onPopUp="onPopUp"
+            @openDialog="openDialog"
+          />
+          <PiniaSkills
+            v-if="currentSkill.id === 'pinia'"
+            @onPopUp="onPopUp"
+            @openDialog="openDialog"
+          />
         </div>
         <v-card
           elevation="0"
@@ -442,7 +396,8 @@
   import AboueMeSection from '../components/section/AboueMeSection.vue'
   import EnterSection from '../components/section/EnterSection.vue'
   import TriggerObserver from './TriggerObserver.vue';  
-  import Chip from './SkillDialog'
+  import VueSkills from './section/skills/VueSkills.vue';
+  import PiniaSkills from './section/skills/PiniaSkills.vue';
 
   const email = 'codma1123@naver.com'
 
@@ -531,6 +486,10 @@
     }
   ]
 
+  const skillComponentMap = {
+    'Vue.js': VueSkills
+  }
+
   const enterDialog = ref(true)
   const dondaDialog = ref(false)
 
@@ -541,6 +500,7 @@
   const currentSkill = ref(null)
   const direct = () => window.open('https://github.com/codma1123', "_blank")
   const { mobile } = useDisplay()
+  
   
 
   // const enter = el => el.style.opacity = 0
@@ -856,31 +816,15 @@
       background: white;
     }
 
-    &::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background-color: #ced4da;
-    
-    &:hover {
-      background-color: #adb5bd;
+      &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background-color: #ced4da;
+      
+      &:hover {
+        background-color: #adb5bd;
+      }
     }
   }
-  }
 
-  .description {
-    border-radius: 1rem;
-    padding: .75rem;    
-    text-align: start;
-    font-size: 25px;
-    align-items: center;
-    gap: 10px;
-
-    .Chip {
-      transition: all .3s;
-    }
-
-    .Chip:hover {
-      transform: scale(1.1);
-    }
-  }
 }
 </style>
