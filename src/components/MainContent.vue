@@ -102,9 +102,11 @@
     <v-card-title class="content-title flex-wrap">
       SKILLS      
     </v-card-title>
-    <v-card-subtitle v-font-size="20">
+    <v-card-subtitle v-font-size="20" class="mb-10">
       이미지를 클릭하여 상세한 내용을 살펴보세요.
     </v-card-subtitle>
+
+    <v-divider class="ml-10 mr-10 mt-5 mb-5"/>
 <!-- 
     <v-container class="skill-container">
       <div class="skill-label">
@@ -142,6 +144,10 @@
     </v-container> -->
 
 
+    <v-card-title class="mt-10 font-weight-bold" v-font-size="70">
+      TECHS
+    </v-card-title>
+    
     <v-container class="skills-container">      
       <v-img        
         v-for="skillContent in skillContents" 
@@ -155,7 +161,9 @@
     <v-container class="mt-5" v-if="!mobile && currentSkill">
       <v-card 
         class="skills-current"
-        color="white" rounded="xl" height="400"
+        color="white" 
+        rounded="xl"
+        height="400"
       >
         <div>
           <v-img :src="currentSkill.src" class="img"/>
@@ -167,7 +175,12 @@
               content="Vue 2" 
               @click="openDialog"
             />
-            버전을 
+            <Chip
+              type="Vue.js"
+              content="Vue 3"
+              @click="openDialog"
+            />            
+            을
             <Chip 
               type="TypeScript" 
               @click="openDialog"
@@ -175,12 +188,43 @@
             로 개발한 경험이 있습니다.
           </div>
           <div class="description">
+            <Chip
+              type="Vue.js"
+              content="Vue 2"
+              @click="openDialog"
+            />을
+            <Chip content="Class Component" @popUp="onPopUp"/>
+            스타일로 작성한 경험이 있습니다.
             
           </div>
           <div class="description">
-            <!-- <Chip size="x-large" type="Vue.js" content="Vue 2"/> -->
+            <Chip
+              type="Vue.js"
+              content="Vue 3"
+            />을
+            <Chip content="Composition API"/>
+            스타일로 작성한 경험이 있습니다.
           </div>
-          
+
+          <div class="description">            
+            <Chip type="Vuex" @click="openDialog"/>,
+            <Chip type="pinia" @click="openDialog"/>
+            와 같은 상태관리 라이브러리 사용에 능합니다.
+          </div>          
+
+          <div class="description">            
+            <Chip content="Custom Directive" />,
+            <Chip content="h() Render Function" />
+            <span>과 같이 재사용성을 위한</span>
+            <Chip type="Vue.js" />의 다양한 기능들을 사용합니다.
+          </div>
+
+          <div class="description">            
+            <Chip content="Custom Directive" />,
+            <Chip content="h() Render Function" />
+            <span>과 같이 재사용성을 위한</span>
+            <Chip type="Vue.js" />의 다양한 기능들을 사용합니다.
+          </div>
         </div>
         <v-card
           elevation="0"
@@ -192,6 +236,10 @@
         </v-card>
       </v-card>
     </v-container>
+
+    <v-card-title class="content-title flex-wrap">
+      TOOLS
+    </v-card-title>
     
   </v-sheet>
 
@@ -521,6 +569,10 @@
     currentSkill.value = targetSkill
   }
 
+  const onPopUp = id => {
+    console.log(id)
+  }
+
 
       
   onMounted(() => {
@@ -542,7 +594,6 @@
 }
 
 .skills-container {    
-  margin-top: 30px;
   display: flex;
   gap: 30px;
   flex-wrap:wrap;
@@ -572,7 +623,7 @@
 }
 
 .content-title {
-  font-size: 50px;
+  font-size: 70px;
   font-weight:bold;
   margin-left: 10px;
   padding-top: 105px;
@@ -798,17 +849,38 @@
     display: flex;
     gap: 10px;
     flex-direction: column;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: 15px;
+      background: white;
+    }
+
+    &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #ced4da;
+    
+    &:hover {
+      background-color: #adb5bd;
+    }
+  }
   }
 
   .description {
-    
     border-radius: 1rem;
     padding: .75rem;    
     text-align: start;
-    font-size: 30px;
-    display: flex;
+    font-size: 25px;
     align-items: center;
     gap: 10px;
+
+    .Chip {
+      transition: all .3s;
+    }
+
+    .Chip:hover {
+      transform: scale(1.1);
+    }
   }
 }
 </style>
