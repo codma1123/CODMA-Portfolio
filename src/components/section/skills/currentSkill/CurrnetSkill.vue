@@ -1,34 +1,38 @@
 <template>
-  <v-card 
-    class="skills-current"
-    color="white" 
-    rounded="xl"
-    height="400"
-  >
-    <div>
-      <v-img :src="props.currentSkill.src" class="img"/>
-    </div>
-    <div class="description-container">
-      <VueSkills 
-        v-if="props.currentSkill.id === 'Vue.js'"
-        @onPopUp="onPopUp"
-        @openDialog="openDialog"
-      />
-      <PiniaSkills
-        v-if="props.currentSkill.id === 'pinia'"
-        @onPopUp="onPopUp"
-        @openDialog="openDialog"
-      />      
-    </div>
-    <v-card
+  <v-container class="mt-5">
+    <v-card 
+      class="skills-current"
+      color="white" 
       elevation="0"
-      v-font-size="50" class="title"
       rounded="xl"
-      color="rgb(65, 184, 131)"
+      height="400"
     >
-      {{ props.currentSkill.id }}
+      <div>
+        <v-img :src="props.currentSkill.src" class="img"/>
+      </div>
+      <div class="description-container">
+        <VueSkills 
+          v-if="props.currentSkill.id === 'Vue.js'"
+          @onPopUp="onPopUp"
+          @openDialog="setId"
+        />
+        <PiniaSkills
+          v-if="props.currentSkill.id === 'pinia'"
+          @onPopUp="onPopUp"
+          @openDialog="setId"
+        />      
+      </div>
+      <v-card
+        elevation="0"
+        class="title"
+        v-font-size="50" 
+        rounded="xl"
+        color="rgb(65, 184, 131)"
+      >
+        {{ props.currentSkill.id }}
+      </v-card>
     </v-card>
-  </v-card>
+  </v-container>
 </template>
 
 <script setup>
@@ -36,8 +40,8 @@ import VueSkills from './VueSkills.vue';
 import PiniaSkills from './PiniaSkills.vue';
 
 const props = defineProps({ currentSkill: Object })
-const emit = defineEmits(['openDialog'])
-const openDialog = e => emit('openDialog', e)
+const emit = defineEmits(['setId'])
+const setId = e => emit('setId', e)
 
 </script>
 
