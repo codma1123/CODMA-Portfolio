@@ -6,7 +6,8 @@ const chipMap = {
   'TypeScript': 'rgb(0, 122, 204)',
   'Vuex': 'green-lighten-1',
   'pinia': 'rgb(236, 183, 50)',
-  'default': 'gray',  
+  'JavaScript': 'rgb(247, 220, 30)',
+  'default': 'gray',
 } as const
 
 type ChipType = keyof (typeof chipMap)
@@ -16,7 +17,6 @@ interface ChipProp {
   type: ChipType
   content: ChipType | string
 }
-
 
 const Chip = (props: ChipProp, context: ComponentInternalInstance): VNode => {
 

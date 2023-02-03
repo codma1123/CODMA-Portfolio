@@ -8,8 +8,9 @@
       type="Vue.js" 
       content="Vue 2" 
       @click="openDialog"
-    />, 
+    />
     <Chip
+      class="ml-3"
       type="Vue.js"
       content="Vue 3"
       @click="openDialog"
@@ -42,7 +43,6 @@
     />을
     <Chip content="Composition API"/>,
     <Chip content="Composition API setup"/>
-
     스타일로 작성한 경험이 있습니다.
   </div>
 
@@ -50,8 +50,9 @@
     <Chip 
       type="Vuex"
       @click="openDialog"
-    />,
+    />
     <Chip 
+      class="ml-3"
       type="pinia" 
       @click="openDialog"
     />
@@ -82,18 +83,13 @@
 <script setup>
 
 import { ref } from 'vue'
-import Chip from '../../SkillDialog'
+import Chip from '../../../SkillDialog'
+
+const emit = defineEmits(['openDialog', 'onPopUp'])
 
 const openDialog = e => emit('openDialog', e)
 const popUp = e => emit('onPopUp', e)
 const description = ref(null)
-const scroll = e => {
-  console.log(e)
-}
-
-
-
-
 
 </script>
 

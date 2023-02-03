@@ -79,7 +79,7 @@
 </template>
 
 <script setup>
-  import { onMounted } from 'vue'
+  import { onMounted, ref } from 'vue'
   import TriggerObserver from '../TriggerObserver.vue';
 
   const EMAIL = 'codma1123@naver.com'

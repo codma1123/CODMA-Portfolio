@@ -17,185 +17,9 @@
 
   <EnterSection />
 
+  <AboueMeSection />
 
-  <v-sheet     
-    color="#181818"
-    id="About me"
-    class="text-center"
-  >    
-    <v-card-title class="content-title">
-      ABOUT ME
-    </v-card-title>
-    
-    <transition v-on:enter="enter">
-      <div v-if="show" ref="aboutMeWrapper">
-        <section>
-          <trigger-observer @triggerFadeIn="fadeIn" />
-          <v-container class="intro__about_me">            
-            <v-avatar size="150">
-              <v-img src="../../public/codmaProfile.png" />
-            </v-avatar>
-
-            <div class="d-flex align-center flex-wrap justify-center aboutMe-chips">
-
-              <!-- 이름 -->
-              <div class="aboutMe-chip" label>
-                <div class="abomtMe-chip-label">이름</div>
-                <div class="abomtMe-chip-description">이준하 | CODMA</div>
-              </div>
-
-              <!-- 생년월일 -->
-              <div class="aboutMe-chip" label>
-                <div class="abomtMe-chip-label">생년월일</div>
-                <div class="abomtMe-chip-description">1996.11.29</div>
-              </div>
-
-              <!-- 메일 -->
-              <div class="aboutMe-chip" label>
-                <div class="abomtMe-chip-label">메일</div>
-                <div class="abomtMe-chip-description email" @click="copyMail"> 
-                  codma1123@naver.com                  
-                </div>
-              </div>
-
-              <!-- 연락처 -->
-              <div class="aboutMe-chip" label>
-                <div class="abomtMe-chip-label">연락처</div>
-                <div class="abomtMe-chip-description">010-9922-0335</div>
-              </div>
-
-              <!-- 거주지 -->
-              <div class="aboutMe-chip" label>
-                <div class="abomtMe-chip-label">거주지</div>
-                <div class="abomtMe-chip-description">안산시 상록구</div>
-              </div>
-
-              <!-- 학적 -->
-              <div class="aboutMe-chip" label>
-                <div class="abomtMe-chip-label">학적</div>
-                <div class="abomtMe-chip-description">한경대학교 컴퓨터공학과</div>
-              </div>
-
-              
-            </div>
-            <!-- <div class="intro__about_me-content content1">
-              <v-icon icon="mdi:mdi-account" size="200" />              
-              <v-list class="intro__about_me_myName">
-                <v-list-item>
-                </v-list-item>
-                <v-list-item>
-                </v-list-item>
-              </v-list>
-            </div>
-            <div class="intro__about_me-content content2"></div>
-            <div class="intro__about_me-content content3"></div> -->
-          </v-container>
-        </section>
-      </div>
-    </transition>
-  </v-sheet>
-
-  <v-sheet 
-    id="Skills"
-    class="text-center pb-15"
-  >
-    <v-card-title class="content-title flex-wrap">
-      SKILLS      
-    </v-card-title>
-    <v-card-subtitle v-font-size="20" class="mb-10">
-      이미지를 클릭하여 상세한 내용을 살펴보세요.
-    </v-card-subtitle>
-
-    <v-divider class="ml-10 mr-10 mt-5 mb-5"/>
-<!-- 
-    <v-container class="skill-container">
-      <div class="skill-label">
-        ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
-        ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
-      </div>
-      <v-card color="white" height="300">
-        ㅎㅇ
-      </v-card>
-    </v-container> -->
-    
-    <!-- <v-container class="mt-10 d-flex flex-wrap skills-container">
-      <v-card 
-        class="d-flex pt-3 pb-3 align-center"
-        color="white" 
-        rounded="xl"
-        width="500"
-        height="250"
-      >        
-        <v-img
-          class="img"
-          src="../../public/HTML5.svg"
-        />
-        <v-img
-          class="img"
-          src="../../public/CSS.svg"
-        />
-        <v-img
-          class="img"
-          src="../../public/HTML5.svg"
-        />
-
-      </v-card>
-      
-    </v-container> -->
-
-
-    <v-card-title class="mt-10 font-weight-bold" v-font-size="70">
-      TECHS
-    </v-card-title>
-    
-    <v-container class="skills-container">      
-      <v-img        
-        v-for="skillContent in skillContents" 
-        :class="['img', skillContent.id === currentSkill?.id ? 'active' : '']"        
-        :id="skillContent.id" 
-        :src="skillContent.src"
-        @click.stop="openDialog(skillContent.id)"
-      />            
-    </v-container>
-
-    <v-container class="mt-5" v-if="!mobile && currentSkill">
-      <v-card 
-        class="skills-current"
-        color="white" 
-        rounded="xl"
-        height="400"
-      >
-        <div>
-          <v-img :src="currentSkill.src" class="img"/>
-        </div>
-        <div class="description-container">
-          <VueSkills 
-            v-if="currentSkill.id === 'Vue.js'"
-            @onPopUp="onPopUp"
-            @openDialog="openDialog"
-          />
-          <PiniaSkills
-            v-if="currentSkill.id === 'pinia'"
-            @onPopUp="onPopUp"
-            @openDialog="openDialog"
-          />
-        </div>
-        <v-card
-          elevation="0"
-          v-font-size="50" class="title"
-          rounded="xl"
-          color="rgb(65, 184, 131)"
-        >
-          {{ currentSkill.id }}
-        </v-card>
-      </v-card>
-    </v-container>
-
-    <v-card-title class="content-title flex-wrap">
-      TOOLS
-    </v-card-title>
-    
-  </v-sheet>
+  <SkillsSection />
 
   <v-sheet
     id="Projects"    
@@ -396,53 +220,11 @@
   import AboueMeSection from '../components/section/AboueMeSection.vue'
   import EnterSection from '../components/section/EnterSection.vue'
   import TriggerObserver from './TriggerObserver.vue';  
-  import VueSkills from './section/skills/VueSkills.vue';
-  import PiniaSkills from './section/skills/PiniaSkills.vue';
+  import VueSkills from './section/skills/currentSkill/VueSkills.vue';
+  import PiniaSkills from './section/skills/currentSkill/PiniaSkills.vue';
+  import SkillsSection from './section/skills/SkillsSection.vue';
 
   const email = 'codma1123@naver.com'
-
-  const skillContents = ref([
-    {
-      id: 'HTML',
-      src: '../../public/HTML5.svg',
-      content: '웹사이트의 뼈대가 되는 마크업 언어입니다.'
-    },
-    {
-      id: 'CSS',
-      src: '../../public/CSS.svg',
-      content: 'HTML과 같은 마크업 언어의 표현 방식을 지정해주는 언어입니다.',
-    },
-    {
-      id: 'JavaScript',
-      src: '../../public/JS.svg',    
-      content: '웹 브라우저의 요소를 조작하는 스크립트형 프로그래밍 언어입니다.'
-    },
-    {
-      id: 'TypeScript',
-      src: '../../public/TS.svg',    
-      content: 'JavaScript에 정적 타입을 명시하여 디버깅이나 에러등의 처리를 쉽게 할수 있게하는 JavaScript의 슈퍼셋 언어입니다.',
-    },
-    {
-      id: 'Vue.js',
-      src: '../../public/VUE.svg', 
-      content: '컴포넌트를 활용한 SPA의 구현과, 동적인 웹페이지를 구성할 수 있는 JavaScript, TypsScript 기반의 프론트엔드 프레임워크입니다.'
-    },
-    {
-      id: 'Vuex',
-      src: '../../public/VUEX.png',    
-      content: 'Vue.js에서 공통적인 상태(변수)를 효율적으로 관리하기위한 중앙 상태 저장소입니다.'
-    },
-    {
-      id: 'pinia',
-      src: '../../public/PINIA.svg',    
-      content: 'Vuex에서 Muations를 제거하고, 스토어 접근 방식을 개선한 중앙 상태 저장소입니다. Vue3에 들어서 권장하고있는 상태 관리 방법입니다.'
-    },
-    {
-      id: 'Vuetify',
-      src: '../../public/VUETIFY.svg',
-      content: 'Vue.js에서 활용 가능한 CSS 프레임워크입니다.'
-    },    
-  ])
 
   const dondaStacks = [
     {
@@ -486,10 +268,6 @@
     }
   ]
 
-  const skillComponentMap = {
-    'Vue.js': VueSkills
-  }
-
   const enterDialog = ref(true)
   const dondaDialog = ref(false)
 
@@ -497,12 +275,8 @@
   const show = ref(false)
   const aboutMeWrapper = ref(null)
   const dialog = ref(false)
-  const currentSkill = ref(null)
   const direct = () => window.open('https://github.com/codma1123', "_blank")
-  const { mobile } = useDisplay()
   
-  
-
   // const enter = el => el.style.opacity = 0
   // const fadeIn = () => aboutMeWrapper.value.style = "transition: opacity 3s"
   // const scrollMouseOver = e => {
@@ -512,13 +286,6 @@
 
   const copyMail = () => navigator.clipboard.writeText(email).then(() => copyComplete.value = true)
 
-  const openDialog = id => {
-    const targetSkill = skillContents.value.find(skillContent => skillContent.id === id)
-    currentSkill.value = targetSkill
-    if (mobile.value) {
-      dialog.value = true
-    }    
-  }
 
   const getSkillImgClass = id => {
     return id === currentSkill?.value.id ? 'active' : ''
@@ -533,11 +300,8 @@
     console.log(id)
   }
 
-
-      
   onMounted(() => {
     show.value = true
-    currentSkill.value = skillContents.value.find(skill => skill.id === 'Vue.js')
   })
 
 
@@ -556,7 +320,8 @@
 .skills-container {    
   display: flex;
   gap: 30px;
-  flex-wrap:wrap;
+  flex-wrap: wrap;
+  justify-content: space-around;
   border-radius: 1rem;
 }
 
@@ -564,12 +329,14 @@
   background-color: white;  
   opacity: .5;
   border-radius: 20px;
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 200px;
-  width: 10%;
+  width: 180px;
   max-width: 100%;
   cursor: pointer;
-  transition: all .5s;
+  transition: all .5s;  
 }
 
 .skills-container .img.active {
@@ -577,10 +344,6 @@
   opacity: 1;
 }
 
-
-.profile-links {
-
-}
 
 .content-title {
   font-size: 70px;
@@ -803,28 +566,5 @@
     // border-radius: 1rem;;
     padding: 10px;
   }
-
-  .description-container {
-    flex-grow: 1;
-    display: flex;
-    gap: 10px;
-    flex-direction: column;
-    overflow-y: auto;
-
-    &::-webkit-scrollbar {
-      width: 15px;
-      background: white;
-    }
-
-      &::-webkit-scrollbar-thumb {
-      border-radius: 10px;
-      background-color: #ced4da;
-      
-      &:hover {
-        background-color: #adb5bd;
-      }
-    }
-  }
-
 }
 </style>
