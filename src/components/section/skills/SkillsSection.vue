@@ -34,7 +34,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, computed } from 'vue'
 import CurrentSkill from './currentSkill/CurrnetSkill.vue'
 import { useDisplay } from 'vuetify/lib/framework.mjs';
 import { useContstance } from '../../../hooks/constance';
@@ -43,21 +43,11 @@ import SkillBox from './currentSkill/SkillBox.vue';
 const { mobile } = useDisplay()
 const { skillContents } = useContstance()
 
-const currentSkill = ref(null)
+const currentSkill = computed(() => skillContents.find(skillContent => skillContent.id === currentId.value))
+const currentId = ref('Vue.js')
 
-const openDialog = id => {
-  const targetSkill = skillContents.find(skillContent => skillContent.id === id)
+const openDialog = id => currentId.value = id 
   
-  currentSkill.value = targetSkill
-  if (mobile.value) {
-    dialog.value = true
-  }    
-}
-
-onMounted(() => {
-  currentSkill.value = skillContents.find(skill => skill.id === 'Vue.js')
-})
-
 </script>
 
 <style lang="scss" >
