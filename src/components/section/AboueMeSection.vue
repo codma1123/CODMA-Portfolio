@@ -89,12 +89,6 @@
 
   const copyMail = () => navigator.clipboard.writeText(EMAIL).then(() => copyComplete.value = true)      
   
-
   onMounted(() => show.value = true)
 
-
 </script>
-
-<style lang="scss" scoped>
-
-</style>
