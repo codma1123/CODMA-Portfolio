@@ -15,7 +15,7 @@
       color="rgb(38, 38, 38)"
     >
       <v-img 
-        src="../../public/projects/title.png"
+        src="../../../../public/projects/title.png"
         class="project.title"
       />
 
