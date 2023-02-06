@@ -15,7 +15,7 @@
           <trigger-observer @triggerFadeIn="fadeIn" />
           <v-container class="intro__about_me">            
             <v-avatar size="150">
-              <v-img src="../../public/codmaProfile.png" />
+              <v-img src="public/codmaProfile.png" />
             </v-avatar>
 
             <div class="d-flex align-center flex-wrap justify-center aboutMe-chips">

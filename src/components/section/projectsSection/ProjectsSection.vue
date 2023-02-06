@@ -15,7 +15,7 @@
       color="rgb(38, 38, 38)"
     >
       <v-img 
-        src="../../../../public/projects/title.png"
+        src="public/projects/title.png"
         class="project.title"
       />
 
@@ -158,23 +158,23 @@ import { ref } from 'vue'
   const dondaCarouselImages = [
     {
       id: 'donda',
-      src: "../../public/projects/DONDA.png"
+      src: "public/projects/DONDA.png"
     },
     {
       id: 'search',
-      src: "../../public/projects/search.png"      
+      src: "public/projects/search.png"      
     },
     {
       id: 'eval',
-      src: "../../public/projects/eval.png"
+      src: "public/projects/eval.png"
     },
     {
       id: 'indicator',
-      src: "../../public/projects/indicator.png"
+      src: "public/projects/indicator.png"
     },
     {
       id: 'news',
-      src: "../../public/projects/news.png"
+      src: "public/projects/news.png"
     }
   ]
 
