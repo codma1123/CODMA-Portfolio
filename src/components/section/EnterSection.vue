@@ -46,7 +46,7 @@ const popUpPage = () => window.open(GITHUB_ADDRESS, TARGET)
 }
 .profile-sheet::before {
   content: "";
-  background-image: url('../../public/bg.png');
+  background-image: url('public/bg.png');
   background-repeat: no-repeat;
   position: absolute;
   top: 0px;

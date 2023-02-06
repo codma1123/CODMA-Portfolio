@@ -60,17 +60,6 @@
 
               
             </div>
-            <!-- <div class="intro__about_me-content content1">
-              <v-icon icon="mdi:mdi-account" size="200" />              
-              <v-list class="intro__about_me_myName">
-                <v-list-item>
-                </v-list-item>
-                <v-list-item>
-                </v-list-item>
-              </v-list>
-            </div>
-            <div class="intro__about_me-content content2"></div>
-            <div class="intro__about_me-content content3"></div> -->
           </v-container>
         </section>
       </div>

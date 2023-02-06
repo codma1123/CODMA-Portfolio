@@ -5,7 +5,7 @@
   >
     <v-container>
       <v-sheet 
-        class="d-flex justify-center align-center"
+        class="d-flex justify-center aligPn-center"
         height="60vh" width="100%" color="dark"                
       >
         <span class="scroll-down" @mouseover="scrollMouseOver">

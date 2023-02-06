@@ -29,7 +29,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { useDisplay } from 'vuetify/lib/framework.mjs';
-import { useContstance } from '../../../hooks/constance';
+import { useContstance } from '@/hooks/constance';
 
 import CurrentSkill from './currentSkill/CurrnetSkill.vue'
 import SkillBox from './currentSkill/SkillBox.vue';
