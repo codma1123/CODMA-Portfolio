@@ -15,9 +15,9 @@ import NavBar from './components/navbar/NavBar.vue'
 
 <style>
 @import url('https://fonts.googleapis.com/css?family=Jua:400');
-
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap');
 body {
-  font-family: 'Jua', sans-serif;
+  font-family: 'IBM Plex Sans KR', sans-serif;
 }
 </style>
 

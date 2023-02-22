@@ -10,9 +10,10 @@
   <v-container class="skills-container">
     <div 
       v-for="skillContent in skillContents"
-      :key="skillContent.id"        
+      :key="skillContent.id"
+      class="skill" 
     >        
-      <v-chip class="mb-5" v-font-size="30" label>
+      <v-chip class="mb-5 pt-2 pb-2" v-font-size="25">
         {{ skillContent.id }}
       </v-chip>
       <v-img                
@@ -42,7 +43,6 @@
   align-items: center;
   height: 200px;
   width: 180px;
-  max-width: 100%;
   cursor: pointer;
   transition: all .5s;  
 }
@@ -50,6 +50,23 @@
 .img.active {
   transform: scale(1.15);
   opacity: 1;
+}
+
+@media(max-width: 500px) {
+  .img {
+    width: 100% !important;
+  }
+
+  .skill {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+
+  }
+  
 }
 </style>
 
