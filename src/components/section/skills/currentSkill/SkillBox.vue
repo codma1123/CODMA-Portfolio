@@ -30,7 +30,7 @@
   display: flex;
   gap: 30px;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: center;
   border-radius: 1rem;
 }
 
