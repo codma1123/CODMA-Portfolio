@@ -9,14 +9,14 @@
 
     
     <v-card 
-      class="ml-10 mr-10 mt-10 project-donda"
+      class="project-donda"
       elevation="0"
       rounded="xl"
       color="rgb(38, 38, 38)"
     >
       <v-img 
         src="public/projects/title.png"
-        class="project.title"
+        class="project-title"
       />
 
       <v-carousel
@@ -71,7 +71,7 @@
           주요 사용 기술 스택
         </v-card-title>
         <v-card-text class="project-description d-flex justify-center flex-wrap mt-3">
-          <v-chip v-for="dondaStack in dondaStacks" :key="dondaStack.skill" :color="dondaStack.color" class="ml-1" label size="x-large">
+          <v-chip v-for="dondaStack in dondaStacks" :key="dondaStack.skill" :color="dondaStack.color" class="ml-1 mt-1" label size="x-large">
             {{ dondaStack.skill }}
           </v-chip>              
         </v-card-text>
@@ -182,8 +182,22 @@ import { ref } from 'vue'
 
 <style lang="scss" scoped>
 .projects {  
-  padding: 100px;
+  padding: 50px;
   background-color: rgb(50, 202, 134);
+}
+
+.project-donda {
+  margin-top: 50px;
+}
+
+@media screen and (max-width: 600px) {
+  .projects {
+    padding: 1rem;
+  }
+
+  .project-donda {
+
+  }
 }
 
 

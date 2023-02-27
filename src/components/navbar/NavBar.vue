@@ -21,7 +21,7 @@
         <v-btn 
           v-for="(menu, i) in menus" :key="i" 
           variant="plain"
-          @click="scroll(menu.text)"
+          @click="[scroll(menu.text), expandMenu = !expandMenu]"
         >
           <template v-slot:prepend>
             <v-icon :icon="menu.icon" />
