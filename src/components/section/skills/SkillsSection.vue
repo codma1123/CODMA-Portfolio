@@ -8,7 +8,7 @@
       SKILLS      
     </v-card-title>    
 
-    <v-card-subtitle v-font-size="20" class="mb-3">
+    <v-card-subtitle v-font-size="20" class="mb-10">
       이미지를 클릭하여 상세한 내용을 살펴보세요.
     </v-card-subtitle>
     

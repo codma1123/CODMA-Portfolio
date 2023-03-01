@@ -231,12 +231,7 @@
   background-color: rgb(50, 202, 134);
 }
 
-.project-donda {
-  background-image: url('../../public/projects/donda-bg.png');
-  background-repeat: no-repeat;
-  background-size: 650px 650px;
-  background-position: -10% 800px;
-}
+
 
 .project-title {
   margin-top: 20px;
@@ -247,12 +242,7 @@
 }
 
 
-.project-carousel {
-  margin: auto;
-  height: 500px !important;
-  overflow: visible;
-  width: 75%;
-}
+
 
 
 .project-description {
@@ -264,24 +254,10 @@
   margin-top: 10px;
 }
 
-.project-patented {
-  margin-top: 20px;
-  padding-top: 20px;
-  font-size: 30px;
-  cursor: pointer;  
-}
-
-.project-patented.after-review:hover {
-  transition: .5s all ease-in-out;
-}
-.project-patented.after-review:hover {
-  transform: scale(1.2);
-}
 
 
-.project-content-container {
-  max-width: 1100px;
-}
+
+
 
 
 

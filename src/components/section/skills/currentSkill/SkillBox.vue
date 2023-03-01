@@ -6,32 +6,36 @@
   const emit = defineEmits(['setId'])
 </script>
 
-<template>
+<template>    
   <v-container class="skills-container">
     <div 
       v-for="skillContent in skillContents"
       :key="skillContent.id"
       class="skill" 
-    >        
-      <v-chip class="mb-5 pt-2 pb-2" v-font-size="25">
-        {{ skillContent.id }}
-      </v-chip>
+    >             
       <v-img                
         :class="['img', skillContent.id === currentSkill?.id ? 'active' : '']"
         :src="skillContent.src"
         @click.stop="emit('setId', skillContent.id)"
-      />                    
+      />  
     </div>
   </v-container>
 </template>
 
 <style lang="scss" scoped>
+
+
 .skills-container {    
   display: flex;
   gap: 30px;
   flex-wrap: wrap;
   justify-content: center;
   border-radius: 1rem;
+  padding: 30px;
+}
+
+.skill {
+  position: relative;
 }
 
 .img {
