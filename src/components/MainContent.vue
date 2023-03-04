@@ -233,13 +233,7 @@
 
 
 
-.project-title {
-  margin-top: 20px;
-  font-size: 30px;
-  height: 200px;
-  padding: 20px;
-  margin-bottom: 20px;
-}
+
 
 
 
